@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101410">
+  <meta name="description" content="An offline adventure through Git. Eighteen interactive labs, a practice terminal, and live repository visualizations.">
+  <title>GitQuest — Small commands. Big possibilities.</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="engine.js" defer></script>
+  <script src="recaps.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body id="top">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Learning navigation">
+      <a class="brand" href="#top" aria-label="GitQuest home"><span class="brand-mark"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8 7v14M8 16c0-7 12-2 12-9" stroke="currentColor" stroke-width="2.5"/><circle cx="8" cy="6" r="3" fill="currentColor"/><circle cx="8" cy="22" r="3" fill="currentColor"/><circle cx="20" cy="6" r="3" fill="currentColor"/></svg></span><span>git<span class="brand-light">quest</span><sup>_</sup></span></a>
+      <div class="journey-label">YOUR JOURNEY <span id="sidebar-count">0 / 18</span></div>
+      <nav id="chapter-nav"></nav>
+      <button class="all-levels" id="map-button"><span class="icon">▦</span> Explore the level map <span>↗</span></button>
+      <div class="sidebar-bottom">
+        <div class="badge-shelf"><span class="eyebrow">YOUR COLLECTION</span><div id="badges"></div></div>
+        <button class="sidebar-link" id="guide-button"><span class="icon">⌘</span> Field guide <kbd>?</kbd></button>
+        <button class="sidebar-link" id="motion-button" aria-pressed="true"><span class="icon">◌</span> Animations <span class="toggle on" aria-hidden="true"></span></button>
+        <div class="offline-label"><span class="status-dot"></span> Offline & ready to explore</div>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar"><div class="breadcrumb"><span>THE LEARNING LAB</span><span>/</span><strong id="chapter-name">FOUNDATIONS</strong></div><div class="topbar-actions"><span class="xp-display"><span>✦</span> <b id="xp-count">0</b> XP</span><button id="help-button" class="icon-button" aria-label="How to play">?</button></div></header>
+      <section class="hero">
+        <div><div class="eyebrow hero-eyebrow"><span class="tiny-line"></span> LEARN BY DOING. UNDERSTAND BY SEEING.</div><h1>Small commands.<br><span>Big possibilities.</span></h1><p>Your next adventure starts at the command line.</p></div>
+        <div class="journey-summary"><div class="orbital-art" aria-hidden="true"><svg viewBox="0 0 230 100"><path d="M22 75H108Q134 75 134 49V26H206M108 75H206" fill="none" stroke="#3f5033" stroke-width="2"/><path class="flow-line" d="M22 75H108Q134 75 134 49V26H206" fill="none" stroke="#baf267" stroke-width="2" stroke-dasharray="5 90"/><circle cx="25" cy="75" r="9" fill="#baf267"/><circle cx="106" cy="75" r="9" fill="#242e21" stroke="#baf267" stroke-width="2"/><circle cx="202" cy="26" r="9" fill="#baf267"/><circle cx="202" cy="75" r="9" fill="#242e21" stroke="#769559" stroke-width="2"/><text x="21" y="47">main</text><text x="161" y="11">you, growing</text></svg></div><div class="journey-progress-label"><span>Adventure progress</span><strong id="progress-label">0 of 18 levels</strong></div><div class="progress-track"><div id="journey-progress"></div></div></div>
+      </section>
+      <div class="lab-grid">
+        <div class="challenge-column">
+          <section class="quest-card" aria-labelledby="quest-title"><div class="card-kicker"><span><span class="mission-symbol">⚑</span> CURRENT MISSION</span><span class="level-pill" id="level-pill">LEVEL 01</span></div><div class="quest-heading"><h2 id="quest-title"></h2><span id="difficulty" class="difficulty"></span></div><p id="quest-description"></p><ul class="objectives" id="objectives"></ul><div class="hint-content" id="hint-content" hidden></div><div class="quest-footer"><button id="hint-button" class="text-button"><span>☼</span> Need a nudge?</button><span class="reward" id="reward">+100 XP <span>✦</span></span></div><div id="completion" class="completion" hidden><div><span class="success-symbol">✓</span><div><strong>Mission accomplished.</strong><span id="completion-detail"></span></div></div><button id="next-button" class="primary-button">Next mission <span>→</span></button></div></section>
+          <section class="terminal-card" aria-label="Practice terminal"><div class="terminal-header"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>THE PRACTICE TERMINAL</span><button class="terminal-reset" id="reset-button" title="Restart this level" aria-label="Restart this level">↺</button></div><div class="terminal-output" id="terminal-output" role="log" aria-live="polite" aria-relevant="additions text"></div><form id="terminal-form" autocomplete="off"><label class="terminal-prompt" for="command-input"><span id="prompt-path">~/first-repo</span> <b>$</b></label><div class="command-row"><span aria-hidden="true">❯</span><input id="command-input" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Git command" placeholder="Type git init to begin…"><button type="submit" aria-label="Run command">↵</button></div></form><div class="terminal-shortcuts"><span>TRY</span><div id="command-chips"></div><span class="keyboard-tip">↑ history · Tab complete</span></div></section>
+          <div class="practice-note"><span>⌁</span><p>A safe, simulated repository. Make mistakes here.<br>Take your skills to a real terminal.</p></div>
+        </div>
+        <section class="visual-card" aria-label="Live repository visualization"><div class="visual-header"><div><span class="live-dot"></span><h2>Your repository, in motion</h2></div><span class="live-label">LIVE VIEW</span></div><div class="visual-tabs" role="tablist" aria-label="Repository views"><button role="tab" id="tab-workspace" aria-controls="view-workspace" aria-selected="true" data-view="workspace">Workspace</button><button role="tab" id="tab-history" aria-controls="view-history" aria-selected="false" data-view="history">Commit graph <span id="commit-count">0</span></button><button role="tab" id="tab-remote" aria-controls="view-remote" aria-selected="false" data-view="remote">Remote</button></div>
+          <div class="visual-body"><div id="view-workspace" role="tabpanel" aria-labelledby="tab-workspace"><div class="pipeline-head"><span>THREE PLACES. ONE WORKFLOW.</span><button class="text-button" id="pipeline-info" aria-label="Explain the three Git areas">ⓘ</button></div><div class="pipeline" id="pipeline"></div><div class="flow-explainer"><div class="mini-flow"><span class="mini-file">≡</span><span class="dotted-arrow">········→</span><span class="mini-stage">≡</span><span class="dotted-arrow">········→</span><span class="mini-commit">✓</span></div><div class="flow-labels"><span>You change it.</span><span>You choose it.</span><span>Git remembers it.</span></div></div><div class="file-section"><div class="section-label"><span>FILES IN YOUR WORKSPACE</span><button id="new-file-button" class="text-button">+ New file</button></div><div id="file-list"></div><p class="file-helper">Select a file to inspect or edit its contents.</p></div></div>
+          <div id="view-history" role="tabpanel" aria-labelledby="tab-history" hidden><div class="graph-toolbar"><span class="eyebrow">EVERY COMMIT IS A CHECKPOINT</span><span class="graph-legend"><i></i> main <i></i> branch</span></div><div id="commit-graph"></div><div class="graph-tip">Branches are movable labels on commits. HEAD tells you where you are.</div></div>
+          <div id="view-remote" role="tabpanel" aria-labelledby="tab-remote" hidden><div class="remote-intro"><span class="eyebrow">A SECOND REPOSITORY</span><h3>Your ideas, connected.</h3><p>Practice sharing changes with mission control. This remote lives inside the game, so everything works offline.</p></div><div id="remote-diagram"></div></div>
+          <div class="action-story" id="action-story" aria-live="polite"><span class="story-icon">↳</span><div><strong id="story-title">A blank page. A fresh start.</strong><p id="story-text">Initialize a repository to start keeping track of your ideas.</p></div></div></div>
+          <footer class="repo-footer"><span><span class="branch-icon">⑂</span> <b id="head-label">main</b><span class="head-tag">HEAD</span></span><span id="repo-status"><i class="status-dot"></i> No repository yet</span></footer>
+        </section>
+      </div>
+      <footer class="page-footer"><span>Built for curiosity. Made for the occasional wrong turn.</span><span>18 levels <i>·</i> 4 chapters <i>·</i> Zero internet required</span></footer>
+    </main>
+  </div>
+  <dialog id="map-dialog" class="map-dialog"><div class="dialog-header"><div><span class="eyebrow">CHOOSE YOUR NEXT CHECKPOINT</span><h2>The adventure map</h2></div><button class="icon-button close-dialog" aria-label="Close level map">×</button></div><p class="dialog-intro">Build your skills one mission at a time. Revisit any unlocked level to practice.</p><div id="level-map"></div></dialog>
+  <dialog id="guide-dialog"><div class="dialog-header"><div><span class="eyebrow">A LITTLE HELP ALONG THE WAY</span><h2>Your Git field guide</h2></div><button class="icon-button close-dialog" aria-label="Close field guide">×</button></div><div id="guide-content"></div></dialog>
+  <dialog id="chapter-recap-dialog" class="chapter-recap-dialog" aria-labelledby="recap-title">
+    <div class="dialog-header recap-header"><span class="recap-badge" aria-hidden="true">✓</span><div><span class="eyebrow" id="recap-kicker"></span><h2 id="recap-title"></h2></div><button class="icon-button close-dialog" aria-label="Close chapter recap">×</button></div>
+    <div class="recap-body"><p id="recap-summary" class="recap-summary"></p><h3>What you learned</h3><ul id="recap-takeaways" class="recap-takeaways"></ul><h3>Commands you learned</h3><p class="recap-helper">What each command does, with examples from your adventure when available.</p><div id="recap-commands" class="recap-commands"></div><section class="recap-resources"><h3>Want to understand more?</h3><p>The official Pro Git book explains these ideas in more detail. These optional links open in a new tab and need internet access.</p><div id="recap-resources"></div></section></div>
+    <footer class="recap-footer"><span id="recap-earned"></span><button id="recap-continue" class="primary-button">Continue the adventure →</button></footer>
+  </dialog>
+  <dialog id="editor-dialog"><div class="dialog-header"><div><span class="eyebrow">WORKING DIRECTORY</span><h2 id="editor-title">Edit a file</h2></div><button class="icon-button close-dialog" aria-label="Close file editor">×</button></div><form id="editor-form"><label for="editor-filename">File name</label><input id="editor-filename" required spellcheck="false" placeholder="notes.txt"><label for="editor-content">Contents</label><textarea id="editor-content" spellcheck="false" rows="12"></textarea><p class="editor-note">Saving changes your working directory. Use git add and git commit to save a checkpoint.</p><div class="editor-actions"><button type="button" class="secondary-button" id="delete-file-button">Delete file</button><button type="submit" class="primary-button">Save changes <span>↵</span></button></div><p id="editor-error" class="form-error" role="alert"></p></form></dialog>
+  <dialog id="confirm-dialog"><div class="dialog-header"><h2>Restart this mission?</h2><button class="icon-button close-dialog" aria-label="Cancel restart">×</button></div><p>Your work in this mission will return to its starting point. Earned XP and completed levels stay saved.</p><div class="editor-actions"><button class="secondary-button close-dialog">Keep exploring</button><button class="primary-button" id="confirm-reset">Restart mission ↺</button></div></dialog>
+  <dialog id="new-adventure-dialog"><div class="dialog-header"><h2>Begin a fresh adventure?</h2><button class="icon-button close-dialog" aria-label="Cancel new adventure">×</button></div><p>This resets all missions, XP, badges, and your current practice repository on this device. You will start at level 1.</p><div class="editor-actions"><button class="secondary-button close-dialog">Keep my progress</button><button class="primary-button" id="confirm-new-adventure">Start from level 1 →</button></div></dialog>
+  <dialog id="finish-dialog"><div class="finish-art" aria-hidden="true">✦</div><span class="eyebrow">YOU MADE IT TO THE SUMMIT</span><h2>From curious<br>to Git confident.</h2><p>You completed all 18 missions. You can track, branch, merge, recover, and share your work. Keep that momentum going.</p><div id="finish-stats"></div><button class="primary-button close-dialog">Keep practicing →</button><button class="text-button" id="export-button">Download achievements ↓</button></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>
