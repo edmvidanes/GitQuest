@@ -2,6 +2,14 @@
 
 Learn Git through an offline adventure: **18 interactive levels, four chapters, and a repository you can see in motion.**
 
+## Play GitQuest
+
+| Edition | Levels | Time limit | Play in your browser | Download one HTML file |
+| --- | ---: | --- | --- | --- |
+| **GitQuest** — the complete Git learning adventure | 18 | Self-paced | [Play GitQuest](https://edmvidanes.github.io/GitQuest/) | [Download HTML](https://github.com/edmvidanes/GitQuest/raw/refs/heads/main/index.html) |
+
+The Play link opens the game on GitHub Pages over HTTPS. Download the HTML file for offline play. Both use the same single-file game; the README and screenshot are not required to run it.
+
 ![GitQuest game showing a Git mission, the practice terminal, a live repository visualization, and the creator credit](docs/gitquest-game.jpg)
 
 ## Objective
